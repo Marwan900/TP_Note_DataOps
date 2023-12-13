@@ -13,6 +13,8 @@ df.drop(columns=['Cabin'], inplace=True)
 
 # Encodage one-hot pour la colonne 'Name'
 df = pd.get_dummies(df, columns=['Name'])
+# Encodage one-hot pour la colonne 'Sex'
+df = pd.get_dummies(df, columns=['Sex'])
 
 # Exporter les données nettoyées
 df.to_csv('cleaned_train.csv', index=False)
