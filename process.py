@@ -9,12 +9,12 @@ df = pd.read_csv(file_path)
 
 # Gestion des valeurs manquantes
 df['Age'].fillna(df['Age'].median(), inplace=True)
-df.drop(columns=['Cabin'], inplace=True)
+df.drop(columns=['Cabin'], inplace=True) 
+df.drop(columns=['Ticket'], inplace=True)
 
-# Encodage one-hot pour la colonne 'Name'
-df = pd.get_dummies(df, columns=['Name'])
-# Encodage one-hot pour la colonne 'Sex'
-df = pd.get_dummies(df, columns=['Sex'])
+
+df = pd.get_dummies(df, columns=['Name', 'Sex', 'Embarked'])  # Ajout d'Embarked
+
 
 # Exporter les données nettoyées
 df.to_csv('cleaned_train.csv', index=False)
@@ -22,6 +22,3 @@ df.to_csv('cleaned_train.csv', index=False)
 # Chargement des données nettoyées
 data = pd.read_csv('cleaned_train.csv')
 
-# Séparation des caractéristiques et de la cible
-X = data.drop('Survived', axis=1)
-y = data['Survived']
